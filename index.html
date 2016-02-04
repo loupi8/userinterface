@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<title> Flying Dutchman</title>
+<head>
+<link rel="stylesheet" type="text/css" href="theme.css">
+<body>
+<div id="container">       
+<form>
+<label for="username">Username:</label>
+<input type="text" id="username" name="username">
+<label for="password">Password:</label>
+<input type="password" id="password" name="password">
+<div id="lower">
+<input type="checkbox"><label for="checkbox">Keep me logged in</label>
+<input type="submit" value="Login" onclick="validate()"/>
+</div><!--/ lower-->
+</form>
+</div>
+<script type="text/javascript">
+yourUrl = "http://pub.jamaica-inn.net/fpdb/api.php?action=iou_get_all";
+function Get(yourUrl){
+var Httpreq = new XMLHttpRequest(); // a new request
+Httpreq.open("GET",yourUrl,false);
+Httpreq.send(null);
+return Httpreq.responseText; 
+var json_obj = JSON.parse("Get"(yourUrl));
+alert(json_obj);         
+
+    }
+    var attempt = 3; // Variable to count number of attempts.
+// Below function Executes on click of login button.
+function validate(){
+var username = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+if ( username == "Formget" && password == "formget#123"){
+alert ("Login successfully");
+window.location = "index.html"; // Redirecting to other page.
+return false;
+}
+else{
+attempt --;// Decrementing by one.
+alert("You have left "+attempt+" attempt;");
+// Disabling fields after 3 attempts.
+if( attempt == 0){
+document.getElementById("username").disabled = true;
+document.getElementById("password").disabled = true;
+document.getElementById("submit").disabled = true;
+return false;
+}
+}
+}</script>
+</head>
+</body>
+</html>
