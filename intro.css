@@ -1,0 +1,20 @@
+body {
+background: url(back.jpg) 
+     no-repeat center center fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+#icons {
+   position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: 50%;
+  right: 50%;
+  margin: -100px 0 0 -150px;
+    }
+ img:hover {
+    filter: alpha(opacity=80);
+    opacity: .8;
+}
