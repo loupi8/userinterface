@@ -14,7 +14,113 @@ background: url(back.jpg)
   right: 50%;
   margin: -100px 0 0 -150px;
     }
- img:hover {
-    filter: alpha(opacity=80);
-    opacity: .8;
+#filterbevereges {
+position: fixed;
+width: 200px;
+height: 170px;
+margin-top: 20px;
+background: #ecf2f5;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
 }
+
+#filterallergic {
+position: fixed;
+width: 200px;
+height: 170px;
+margin-top: 200px;
+background: #ecf2f5;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+
+#chart {
+position: fixed;
+width: 200px;
+height: 250px;
+margin-top: 380px;
+background: #ecf2f5;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+
+#main {
+position: fixed;
+width: 1000px;
+height: 610px;
+margin-top: 20px;
+margin-left: 230px;
+overflow: auto;
+overflow: scroll;
+background: #ecf2f5;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+form {
+    margin: 0 auto;
+    margin-top: 0px;
+}
+
+label {
+    color: #555;
+    display: inline-block;
+    padding-top: 10px;
+    font-size: 16px;
+}
+
+
+input[type=checkbox] {
+    float: right;
+    
+}
+.check {
+    margin-left: 3px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+h1 {  font-family: 'Raleway', sans-serif;
+      font-size: 32px; 
+      font-weight: 800; 
+      line-height: 72px; 
+      margin: 0 0 0px; 
+      text-align: center;
+      text-transform: uppercase;
+      border-bottom: 1px solid #ddd; 
+    }
+  
+.alcohol {
+  position: static;
+  display: inline-table;
+  margin: 5px;
+width: 125px;
+height: 199px;
+background: #ecf2f5;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+
+.alcohol img {
+  margin-left: 20px;
+  border-bottom: 1px solid #ddd; 
+}
+
+.alcohol p {
+  border-bottom: 1px solid #ddd;
+
+
+  }

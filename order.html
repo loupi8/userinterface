@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang"en">
 <head>
+	<script src="jquery-2.2.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="intro.css">
 	<title>Order</title>
 </head>
 <body>
@@ -9,6 +11,81 @@
 function goBack() {
     window.history.back();
 }
+
 </script>
+<div id="filterbevereges">
+	<form>
+	<table style="width:100%">
+  <tr>
+    <th>Beverges</th>
+   </tr>
+  <tr>
+    <td><label for="checkbox">Beer</label> <input type="checkbox"></td>
+   </tr>
+   <tr>
+	<td><label for="checkbox">Wines</label> <input type="checkbox"></td>
+	</tr>
+	<tr>
+	<td><label for="checkbox">Whisky</label> <input type="checkbox"></td>
+	</tr>
+	</table>
+	</form>
+</div>
+<div id="filterallergic">
+	<form>
+	<table style="width:100%">
+  <tr>
+    <th>Allergies</th>
+   </tr>
+  <tr>
+    <td><label for="checkbox">Lactose</label> <input type="checkbox"></td>
+   </tr>
+   <tr>
+	<td><label for="checkbox">Gluten</label> <input type="checkbox"></td>
+	</tr>
+	<tr>
+	<td><label for="checkbox">Nut</label> <input type="checkbox"></td>
+	</tr>
+	</table>
+	</form>
+</div>
+<div id="chart">
+	<form>
+	<table>
+    <th>Amount</th>
+    <th>Name</th>
+    <th>Price</th>
+  </tr>
+  </table>
+	</form>
+</div>
+<div id="main">
+	<form>
+	<h1>
+		5 Most Popular
+	</h1>	
+  <div class="products">
+      
+      </div>
+	</form>
+</div>
+<script type="text/javascript">
+var USERNAME = "ervtod";
+var PASSWORD = "ervtod";
+var API_URL = "http://pub.jamaica-inn.net/fpdb/api.php?username=" + USERNAME + "&password=" + PASSWORD  
+
+  $(document).ready(function(){
+
+  // Get all products from the api (as JSON)
+  $.getJSON(API_URL, {action : 'inventory_get'}, function(data){
+    // Loop through the fetched products
+    $.each(data.payload, function(i, data){
+      // Append each product name to the DOM
+      $('.products').append("<div class='alcohol'><img src='dricka.png' alt='dricka'><p>Name: " + data.namn + "</p><p> Price: " + data.pub_price  + " kr</div>");
+    });
+  });
+});
+</script>   
+
 </body>
 </html>
