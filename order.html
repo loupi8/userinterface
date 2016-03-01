@@ -49,7 +49,7 @@ function goBack() {
 	</table>
 	</form>
 </div>
-<div id="chart">
+<div id="chart" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event)">
 	<form>
 	<table>
     <th>Amount</th>
@@ -59,6 +59,19 @@ function goBack() {
   </table>
 	</form>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('tr').click(function(event) {
+    $(this).toggleClass('selected');
+    if (event.target.type !== 'checkbox') {
+      $(':checkbox', this).trigger('click');
+    }
+  });
+});
+
+
+</script>
+  
 <div id="main">
 	<form>
 	<h1>
@@ -73,19 +86,34 @@ function goBack() {
 var USERNAME = "ervtod";
 var PASSWORD = "ervtod";
 var API_URL = "http://pub.jamaica-inn.net/fpdb/api.php?username=" + USERNAME + "&password=" + PASSWORD  
-
-  $(document).ready(function(){
+    $(document).ready(function(){
 
   // Get all products from the api (as JSON)
   $.getJSON(API_URL, {action : 'inventory_get'}, function(data){
     // Loop through the fetched products
     $.each(data.payload, function(i, data){
       // Append each product name to the DOM
-      $('.products').append("<div class='alcohol'><img src='dricka.png' alt='dricka'><p>Name: " + data.namn + "</p><p> Price: " + data.pub_price  + " kr</div>");
+      $('.products').append("<div class='alcohol' ondrop='drop(event)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event)'><img src='beer.svg' alt='dricka'><p>Name: " + data.namn + "</p><p> Price: " + data.pub_price  + " kr</div>");
     });
   });
 });
 </script>   
+<script type="text/javascript">
+  
+  function allowDrop(ev) {
+            ev.preventDefault();
+        }
 
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+
+</script>
 </body>
 </html>
