@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang"en">
 <head>
-	<script src="jquery-2.2.0.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="intro.css">
-	<title>Order</title>
+  <script src="jquery-2.2.0.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="intro.css">
+  <title>Order</title>
 </head>
 <body>
 <button onclick="goBack()">Go Back</button>
@@ -12,52 +12,55 @@ function goBack() {
     window.history.back();
 }
 
+
 </script>
+<button id="white">White</button>
+<button id="blue">Blue</button>
 <div id="filterbevereges">
-	<form>
-	<table style="width:100%">
+  <form>
+  <table style="width:100%">
   <tr>
     <th>Beverges</th>
    </tr>
   <tr>
-    <td><label for="checkbox">Beer</label> <input type="checkbox"></td>
+    <td><label for="checkbox">Beer</label> <input id="beer" type="checkbox"></td>
    </tr>
    <tr>
-	<td><label for="checkbox">Wines</label> <input type="checkbox"></td>
-	</tr>
-	<tr>
-	<td><label for="checkbox">Whisky</label> <input type="checkbox"></td>
-	</tr>
-	</table>
-	</form>
+  <td><label  for="checkbox">Wines</label> <input id="wines" type="checkbox"></td>
+  </tr>
+  <tr>
+  <td><label for="checkbox">Whisky</label> <input type="checkbox"></td>
+  </tr>
+  </table>
+  </form>
 </div>
 <div id="filterallergic">
-	<form>
-	<table style="width:100%">
+  <form>
+  <table style="width:100%">
   <tr>
     <th>Allergies</th>
    </tr>
   <tr>
-    <td><label for="checkbox">Lactose</label> <input type="checkbox"></td>
+    <td><label for="checkbox">Lactose</label> <input id="lactose" type="checkbox"></td>
    </tr>
    <tr>
-	<td><label for="checkbox">Gluten</label> <input type="checkbox"></td>
-	</tr>
-	<tr>
-	<td><label for="checkbox">Nut</label> <input type="checkbox"></td>
-	</tr>
-	</table>
-	</form>
+  <td><label for="checkbox">Gluten</label> <input id="gluten" type="checkbox"></td>
+  </tr>
+  </table>
+  </form>
 </div>
-<div id="chart" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event)">
-	<form>
-	<table>
+<div id="chart" ondrop="drop(event)" ondragover="allowDrop(event)" >
+  <form>
+  <table id="orderList">
+  <tr>
     <th>Amount</th>
     <th>Name</th>
     <th>Price</th>
   </tr>
+  <tr>
+  </tr>
   </table>
-	</form>
+  </form>
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -71,47 +74,102 @@ $(document).ready(function() {
 
 
 </script>
-  
 <div id="main">
-	<form>
-	<h1>
-		5 Most Popular
-	</h1>	
-  <div class="products">
+
+  <form>
+  
+
+  <h1>
+    5 Most Popular
+    
+  </h1> 
+  <div class="products"> </div>
+  <div class="productwine"></div>
       
-      </div>
-	</form>
+  </form>
 </div>
+<script type="text/javascript">$('#white').click(function(){ 
+    $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color":"red"});
+});
+
+$('#blue').click(function(){ 
+    $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color":"blue"});
+});
+$('#white').click(function(){ 
+    $('#white').css({"color":"blue"});
+
+$('#blue').click(function(){ 
+    $('#blue').css({"color":"blue"});
+}); </script>
 <script type="text/javascript">
-var USERNAME = "ervtod";
-var PASSWORD = "ervtod";
-var API_URL = "http://pub.jamaica-inn.net/fpdb/api.php?username=" + USERNAME + "&password=" + PASSWORD  
-    $(document).ready(function(){
+
+ $(function(){
+    $('#wines').click(function() {
+        if($(this).is(':checked')) {
+            $(".products").hide(); 
+            $(".productwine").show();
+          }
+        else
+            $(".products").show();
+
+    });
+    
+});
+  
+
+  $(document).ready(function(){
 
   // Get all products from the api (as JSON)
-  $.getJSON(API_URL, {action : 'inventory_get'}, function(data){
+  $.getJSON("file:///Applications/MAMP/htdocs/FD/beers.json", function(data){
     // Loop through the fetched products
     $.each(data.payload, function(i, data){
       // Append each product name to the DOM
-      $('.products').append("<div class='alcohol' ondrop='drop(event)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event)'><img src='beer.svg' alt='dricka'><p>Name: " + data.namn + "</p><p> Price: " + data.pub_price  + " kr</div>");
+      $('.products').append("<div id='" + data.beer_id + "' class='alcohol' ondrop='drop(event)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event)'><img src='beer.svg' alt='dricka'><p>Name: " + data.namn + "</p><p> Price: " + data.pub_price  + " kr</div>");
     });
   });
 });
+
+  $(document).ready(function(){
+  // Get all products from the api (as JSON)
+  $.getJSON("file:///Applications/MAMP/htdocs/FD/wine.json", function(data){
+    // Loop through the fetched products
+    $.each(data.payload, function(i, data){
+      // Append each product name to the DOM
+      $('.productwine').append("<div class='alcohol' ondrop='drop(event)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event)'><img src='beer.svg' alt='dricka'><p>Name: " + data.namn + "</p><p> Price: " + data.pub_price  + " kr</div>");
+    });
+  });
+});  
 </script>   
 <script type="text/javascript">
+
+name = localStorage.getItem("name");
+alert(name);
   
   function allowDrop(ev) {
             ev.preventDefault();
         }
 
-        function drag(ev) {
+  function drag(ev) {
             ev.dataTransfer.setData("text", ev.target.id);
         }
 
-        function drop(ev) {
+  function drop(ev) {
             ev.preventDefault();
             var data = ev.dataTransfer.getData("text");
-            ev.target.appendChild(document.getElementById(data));
+            object = document.getElementById(data);
+            val = object.getElementsByTagName('p');
+
+            strName = val[0].innerHTML.split(': ')[1];
+            strPrice = val[1].innerHTML.split(': ')[1];
+
+            table = document.getElementById("orderList");
+            row = table.insertRow(-1);
+            col0 = row.insertCell(0)
+            col1 = row.insertCell(1);
+            col2 = row.insertCell(2);
+            col0.innerHTML = 1;
+            col1.innerHTML = strName;
+            col2.innerHTML = strPrice;
         }
 
 </script>
