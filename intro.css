@@ -1,126 +1,247 @@
+* {
+    margin: 0 auto 0 auto;
+
+}
+
 body {
-background: url(back.jpg) 
-     no-repeat center center fixed; 
-  	-webkit-background-size: cover;
-  	-moz-background-size: cover;
-  	-o-background-size: cover;
-  	background-size: cover;
-}
-#icons {
-   position: absolute;
-  top: 50%;
-  left: 50%;
-  bottom: 50%;
-  right: 50%;
-  margin: -100px 0 0 -150px;
-    }
-#filterbevereges {
-position: fixed;
-width: 200px;
-height: 170px;
-margin-top: 20px;
-background: #ecf2f5;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+    overflow-y: scroll;
+    font-family: "Open Sans", sans-serif;
 }
 
-#filterallergic {
-position: fixed;
-width: 200px;
-height: 170px;
-margin-top: 200px;
-background: #ecf2f5;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+#logo {
+    width: 100px;
+    position: absolute;
+    margin-left: 1200px;
+    margin-top: 0px;
+
 }
 
-#chart {
-position: fixed;
-width: 200px;
-height: 250px;
-margin-top: 380px;
-background: #ecf2f5;
+ul, li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+table {
+    border-collapse: separate;
+    border-top: 3px solid grey;
+}
+
+#tableImage {
+    width: 150px;
+    margin-left: 70px;
+
+}
+
+#tableImage:hover {
+    content: url("table2.svg");
+
+}
+
+h1 {
+    color: azure;
+    letter-spacing: 5px;
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 72px;
+    margin: 0 0 0px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ddd;
+}
+
+h2 {
+    font-weight: 800;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 100px;
+    letter-spacing: 3px;
+}
+
+h3 {
+    color: #FFFFFF;
+    text-align: center;
+    padding: 3px;
+    padding-bottom: 5px;
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+hr {
+    height: 0;
+    background: none;
+    border: 0;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+    width: 40%;
+
+}
+
+/*CHECKBOX BUTTONS*/
+span {
+    display: inline-block;
+    width: 50px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    padding: 1em 2em;
+    letter-spacing: 0.1em;
     border-radius: 3px;
-    border: 1px solid #ccc;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+    -webkit-transition: all 300ms;
+    -moz-transition: all 300ms;
+    transition: all 300ms;
+    background: #d6bc33;
+    /*background: #733b30;*/
+    margin: 5px;
+    text-align: center;
+    -webkit-border-radius: 10px;
+
+}
+
+#orderList {
+    text-align: left;
+    background: #f5f1e4;
+}
+
+/*Namnet dragbara produkterna*/
+#bearBrand {
+    padding: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#bearPrice {
+    padding: 3px;
+    font-size: 14px;
+    text-align: center;
 }
 
 #main {
-position: fixed;
-width: 1000px;
-height: 610px;
-margin-top: 20px;
-margin-left: 230px;
-overflow: auto;
-overflow: scroll;
-background: #ecf2f5;
+    float: left;
+    width: 850px;
+    height: auto;
+    margin-top: 40px;
+    margin-left: 330px;
+    margin-right: 600px;
+    overflow: visible;
+    background: #5b955d;
     border-radius: 3px;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
 }
+
+#backButton {
+    position: fixed;
+    background-color: #666f8e;
+    padding: 5px 5px 5px 5px;
+    width: 200px;
+}
+
+body {
+    background: url(back.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /*background-color: #4c874e;*/
+}
+
+#filterbevereges {
+    position: fixed;
+    background-color: #5b975d;
+    border-style: outset;
+    padding: 6px 6px 15px 5px;
+    width: 275px;
+    margin-top: 120px;
+    border-radius: 20px;
+    border-width: 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .1);
+    opacity: 0.99;
+
+}
+
+#filterallergic {
+    position: fixed;
+    padding: 6px 6px 15px 5px;
+    color: aliceblue;
+    margin-top: 450px;
+    width: 275px;
+    /*background: #ecf2f5;*/
+    border-style: outset;
+
+    background-color: #588d58;
+
+    border-radius: 20px;
+    border-width: 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .1);
+    opacity: 0.95;
+
+}
+
+#chart {
+    overflow: auto;
+    position: fixed;
+    width: 275px;
+    height: 400px;
+    margin-top: 600px;
+    background: #5b945d;
+
+    border-width: 15px;
+    border-color: rgba(189, 120, 81, 1);
+    border-style: ridge;
+    border-radius: 30px;
+
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
+
+}
+
 form {
     margin: 0 auto;
     margin-top: 0px;
 }
 
-label {
-    color: #555;
-    display: inline-block;
-    padding-top: 10px;
-    font-size: 16px;
+th, td, tr {
+    padding: 0px;
+    text-align: Left;
+    border-bottom: 1px solid #ddd;
+    width: 60px;
+    height: 1px;
+
 }
 
+td.AMT, td.NAME, td.PRICE {
+    padding: 0 0px;
+    text-align: left;
 
-input[type=checkbox] {
-    float: right;
-    
-}
-.check {
-    margin-left: 3px;
 }
 
-table {
-    border-collapse: collapse;
+#AMT {
+    width: 0px;
+}
+
+#NAME {
     width: 100%;
 }
 
-th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-h1 {  font-family: 'Raleway', sans-serif;
-      font-size: 32px; 
-      font-weight: 800; 
-      line-height: 72px; 
-      margin: 0 0 0px; 
-      text-align: center;
-      text-transform: uppercase;
-      border-bottom: 1px solid #ddd; 
-    }
-  
 .alcohol {
-  position: static;
-  display: inline-table;
-  margin: 5px;
-width: 125px;
-height: 199px;
-background: #ecf2f5;
+    display: inline-table;
+    margin: 7px;
+    color: #707991;
+    width: 125px;
+    height: 199px;
+    background: #fbef97;
     border-radius: 3px;
     border: 1px solid #ddd;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+
 }
 
 .alcohol img {
-  margin-left: 20px;
-  border-bottom: 1px solid #ddd; 
+    border-bottom: 1px solid #ddd;
 }
 
 .alcohol p {
-  border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
 
-
-  }

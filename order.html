@@ -1,177 +1,264 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 <head>
-  <script src="jquery-2.2.0.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="intro.css">
-  <title>Order</title>
+    <meta charset="utf-8">
+    <script src="jquery-2.2.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="intro.css">
+    <link rel="stylesheet" type="text/css" href="checkboxStyle.css">
+    <link rel="stylesheet" type="text/css" href="languageSelector.css">
+    <title>Order</title>
 </head>
+
 <body>
-<button onclick="goBack()">Go Back</button>
-<script>
-function goBack() {
-    window.history.back();
-}
+
+<div id="logo">
+    <img src="logo.svg">
+</div>
+<div id="backButton">
+    <button id="EnglishSvenska5" onclick="goBack()">Go Back</button>
+    <button id="white">White</button>
+    <button id="blue">Blue</button>
+
+</div>
 
 
-</script>
-<button id="white">White</button>
-<button id="blue">Blue</button>
+<div id="chooseLanguage">
+    <label>
+        <input type="checkbox" id="switchLang" name="check"/>
+        <div id="lang" class="lang-text"></div>
+
+    </label>
+</div>
+
+
+<form>
+
+    <div id="main">
+        <div class="products">
+            <h1>Top 5 Beverages</h1>
+        </div>
+
+        <div class="productwine">
+            <h1>Wine</h1>
+        </div>
+    </div>
+</form>
+
 <div id="filterbevereges">
-  <form>
-  <table style="width:100%">
-  <tr>
-    <th>Beverges</th>
-   </tr>
-  <tr>
-    <td><label for="checkbox">Beer</label> <input id="beer" type="checkbox"></td>
-   </tr>
-   <tr>
-  <td><label  for="checkbox">Wines</label> <input id="wines" type="checkbox"></td>
-  </tr>
-  <tr>
-  <td><label for="checkbox">Whisky</label> <input type="checkbox"></td>
-  </tr>
-  </table>
-  </form>
+
+
+    <label>
+        <h3 id="beveragesLanguage">Beverages</h3>
+    </label>
+
+    <form>
+        <label>
+            <input type="checkbox" name="check">
+            <span class="beer-text" id="EnglishSvenska1">Beer</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="check">
+            <span class="wine-text" id="EnglishSvenska2">Wine</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="check">
+            <span class="coctail-text" id="coctailLanguage">Coctail</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="check">
+            <span class="alcFree-text" id="EnglishSvenska3">Soda</span>
+        </label>
+
+    </form>
 </div>
+
 <div id="filterallergic">
-  <form>
-  <table style="width:100%">
-  <tr>
-    <th>Allergies</th>
-   </tr>
-  <tr>
-    <td><label for="checkbox">Lactose</label> <input id="lactose" type="checkbox"></td>
-   </tr>
-   <tr>
-  <td><label for="checkbox">Gluten</label> <input id="gluten" type="checkbox"></td>
-  </tr>
-  </table>
-  </form>
+    <form>
+        <ul>
+            <h3 id="EnglishSvenska4">Allergies</h3>
+            <li>
+                <label>Lactose<input id="lactose" type="checkbox"></label>
+            </li>
+            <li>
+                <label>Gluten<input id="gluten" type="checkbox"></label>
+            </li>
+        </ul>
+
+    </form>
 </div>
-<div id="chart" ondrop="drop(event)" ondragover="allowDrop(event)" >
-  <form>
-  <table id="orderList">
-  <tr>
-    <th>Amount</th>
-    <th>Name</th>
-    <th>Price</th>
-  </tr>
-  <tr>
-  </tr>
-  </table>
-  </form>
+
+
+<div id="chart" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+    <h3>Table 4</h3>
+    <img class="tableChart" id="tableImage" src="table.svg">
+
+    <form>
+        <table id="orderList">
+            <tr>
+                <th id="AMT">AMT.</th>
+                <th id="NAME">NAME</th>
+                <th id="PRICE">PRICE</th>
+            </tr>
+
+
+        </table>
+    </form>
 </div>
-<script type="text/javascript">
-$(document).ready(function() {
-  $('tr').click(function(event) {
-    $(this).toggleClass('selected');
-    if (event.target.type !== 'checkbox') {
-      $(':checkbox', this).trigger('click');
+
+
+<script>
+    function goBack() {
+        window.history.back();
     }
-  });
-});
-
-
 </script>
-<div id="main">
 
-  <form>
-  
 
-  <h1>
-    5 Most Popular
-    
-  </h1> 
-  <div class="products"> </div>
-  <div class="productwine"></div>
-      
-  </form>
-</div>
-<script type="text/javascript">$('#white').click(function(){ 
-    $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color":"red"});
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('tr').click(function (event) {
+            $(this).toggleClass('selected');
+            if (event.target.type !== 'checkbox') {
+                $(':checkbox', this).trigger('click');
+            }
+        });
+    });
+</script>
+
+
+<script type="text/javascript">$('#white').click(function () {
+    $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color": "red"});
 });
 
-$('#blue').click(function(){ 
-    $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color":"blue"});
+$('#blue').click(function () {
+    $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color": "blue"});
 });
-$('#white').click(function(){ 
-    $('#white').css({"color":"blue"});
+$('#white').click(function () {
+    $('#white').css({"color": "blue"});
 
-$('#blue').click(function(){ 
-    $('#blue').css({"color":"blue"});
-}); </script>
+    $('#blue').click(function () {
+        $('#blue').css({"color": "blue"});
+    }); </script>
 <script type="text/javascript">
 
- $(function(){
-    $('#wines').click(function() {
-        if($(this).is(':checked')) {
-            $(".products").hide(); 
-            $(".productwine").show();
-          }
-        else
-            $(".products").show();
+    $(function () {
+        $('#wines').click(function () {
+            if ($(this).is(':checked')) {
+                $(".products").hide();
+                $(".productwine").show();
+            }
+            else
+                $(".products").show();
+
+        });
 
     });
-    
-});
-  
 
-  $(document).ready(function(){
 
-  // Get all products from the api (as JSON)
-  $.getJSON("file:///Applications/MAMP/htdocs/FD/beers.json", function(data){
-    // Loop through the fetched products
-    $.each(data.payload, function(i, data){
-      // Append each product name to the DOM
-      $('.products').append("<div id='" + data.beer_id + "' class='alcohol' ondrop='drop(event)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event)'><img src='beer.svg' alt='dricka'><p>Name: " + data.namn + "</p><p> Price: " + data.pub_price  + " kr</div>");
+    $(document).ready(function () {
+
+        // Get all products from the api (as JSON)
+        $.getJSON("http://pub.jamaica-inn.net/fpdb/api.php?name=jorass&password=jorass&action=inventory_get", function (data) {
+            // Loop through the fetched products
+            $.each(data.payload, function (i, data) {
+                // Append each product name to the DOM
+                $('.products').append("<div id='" + data.beer_id + "' class='alcohol' ondrop='drop(event)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event)'><img src='beer.svg' alt='dricka'><p id='bearBrand'>Name: " + data.namn + "</p><p id='bearPrice'> Price: " + data.pub_price + " kr</div>");
+            });
+        });
     });
-  });
-});
 
-  $(document).ready(function(){
-  // Get all products from the api (as JSON)
-  $.getJSON("file:///Applications/MAMP/htdocs/FD/wine.json", function(data){
-    // Loop through the fetched products
-    $.each(data.payload, function(i, data){
-      // Append each product name to the DOM
-      $('.productwine').append("<div class='alcohol' ondrop='drop(event)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event)'><img src='beer.svg' alt='dricka'><p>Name: " + data.namn + "</p><p> Price: " + data.pub_price  + " kr</div>");
+    $(document).ready(function () {
+        // Get all products from the api (as JSON)
+        $.getJSON("file:///Applications/MAMP/htdocs/FD/wine.json", function (data) {
+            // Loop through the fetched products
+            $.each(data.payload, function (i, data) {
+                // Append each product name to the DOM
+                $('.productwine').append("<div class='alcohol' ondrop='drop(event)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event)'><img src='beer.svg' alt='dricka'><p id='bearBrand'>Name: " + data.namn + "</p><p> Price: " + data.pub_price + " kr</div>");
+            });
+        });
     });
-  });
-});  
-</script>   
+</script>
 <script type="text/javascript">
 
-name = localStorage.getItem("name");
-alert(name);
-  
-  function allowDrop(ev) {
-            ev.preventDefault();
-        }
+    name = localStorage.getItem("name");
+    alert(name);
 
-  function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-        }
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
 
-  function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            object = document.getElementById(data);
-            val = object.getElementsByTagName('p');
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
 
-            strName = val[0].innerHTML.split(': ')[1];
-            strPrice = val[1].innerHTML.split(': ')[1];
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        object = document.getElementById(data);
+        val = object.getElementsByTagName('p');
 
-            table = document.getElementById("orderList");
-            row = table.insertRow(-1);
-            col0 = row.insertCell(0)
-            col1 = row.insertCell(1);
-            col2 = row.insertCell(2);
-            col0.innerHTML = 1;
-            col1.innerHTML = strName;
-            col2.innerHTML = strPrice;
-        }
+        strName = val[0].innerHTML.split(': ')[1];
+        strPrice = val[1].innerHTML.split(': ')[1];
+
+        table = document.getElementById("orderList");
+        row = table.insertRow(-1);
+        col0 = row.insertCell(0)
+        col1 = row.insertCell(1);
+        col2 = row.insertCell(2);
+        col0.innerHTML = 1;
+        col1.innerHTML = strName;
+        col2.innerHTML = strPrice;
+    }
 
 </script>
+
+
+<script>
+    document.getElementById("switchLang").onclick = function () {
+        if (this.checked) {
+            swedish();
+        }
+        else {
+//            alert("Checkbox wasn't checked.");
+            english();
+        }
+    };
+</script>
+
+
+<script>
+
+    function swedish() {
+        {
+            document.getElementById("EnglishSvenska4").innerHTML = "Allergier";
+            document.getElementById("EnglishSvenska5").innerHTML = "Ga tillbaka";
+            document.getElementById("coctailLanguage").innerHTML = "Coctail";
+            document.getElementById("beveragesLanguage").innerHTML = "Drycker";
+            document.getElementById("EnglishSvenska1").innerHTML = "Öl";
+            document.getElementById("EnglishSvenska2").innerHTML = "Vin";
+            document.getElementById("EnglishSvenska3").innerHTML = "Läsk";
+
+        }
+    }
+
+
+    function english() {
+        document.getElementById("EnglishSvenska4").innerHTML = "Allergies";
+        document.getElementById("EnglishSvenska5").innerHTML = "Go back";
+        document.getElementById("coctailLanguage").innerHTML = "Coctail";
+        document.getElementById("beveragesLanguage").innerHTML = "Beverages";
+        document.getElementById("EnglishSvenska1").innerHTML = "Beer";
+        document.getElementById("EnglishSvenska2").innerHTML = "Wine";
+        document.getElementById("EnglishSvenska3").innerHTML = "Soda";
+
+
+    }
+
+</script>
+
+<script src="translate.js"></script>
 </body>
 </html>
