@@ -8,6 +8,11 @@ body {
     font-family: "Open Sans", sans-serif;
 }
 
+.highlightDropArea {
+    background-color: aqua;
+
+}
+
 #logo {
     width: 100px;
     position: absolute;
@@ -178,6 +183,10 @@ body {
     opacity: 0.95;
 
 }
+
+
+
+
 
 #chart {
     overflow: auto;

@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <script src="jquery-2.2.0.min.js"></script>
+    <script src="translate.js"></script>
+
     <link rel="stylesheet" type="text/css" href="intro.css">
     <link rel="stylesheet" type="text/css" href="checkboxStyle.css">
     <link rel="stylesheet" type="text/css" href="languageSelector.css">
@@ -91,10 +93,11 @@
 </div>
 
 
-<div id="chart" ondrop="drop(event)" ondragover="allowDrop(event)">
+<div id="chart">
 
     <h3>Table 4</h3>
-    <img class="tableChart" id="tableImage" src="table.svg">
+    <img id="tableImage" class="tableChart" src="table.svg" draggable="false" ondrop="drop(event)"
+         ondragover="allowDrop(event)">
 
     <form>
         <table id="orderList">
@@ -102,11 +105,13 @@
                 <th id="AMT">AMT.</th>
                 <th id="NAME">NAME</th>
                 <th id="PRICE">PRICE</th>
+                <th id="OPTION">Option</th>
             </tr>
-
-
         </table>
     </form>
+    <div id="totalAMT">
+        <h3 id="totalAmount"></h3>
+    </div>
 </div>
 
 
@@ -129,19 +134,22 @@
 </script>
 
 
-<script type="text/javascript">$('#white').click(function () {
-    $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color": "red"});
-});
-
-$('#blue').click(function () {
-    $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color": "blue"});
-});
-$('#white').click(function () {
-    $('#white').css({"color": "blue"});
+<script type="text/javascript">
+    $('#white').click(function () {
+        $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color": "red"});
+    });
 
     $('#blue').click(function () {
-        $('#blue').css({"color": "blue"});
-    }); </script>
+        $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color": "blue"});
+    });
+    $('#white').click(function () {
+        $('#white').css({"color": "blue"});
+
+        $('#blue').click(function () {
+            $('#blue').css({"color": "blue"});
+        });
+    });
+</script>
 <script type="text/javascript">
 
     $(function () {
@@ -165,7 +173,11 @@ $('#white').click(function () {
             // Loop through the fetched products
             $.each(data.payload, function (i, data) {
                 // Append each product name to the DOM
-                $('.products').append("<div id='" + data.beer_id + "' class='alcohol' ondrop='drop(event)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event)'><img src='beer.svg' alt='dricka'><p id='bearBrand'>Name: " + data.namn + "</p><p id='bearPrice'> Price: " + data.pub_price + " kr</div>");
+                $('.products').append("<div id='" + data.beer_id + "' class='alcohol' draggable='true' ondragstart='drag(event)' ondragend='dragEnd(event)'>" +
+                        "<img src='beer.svg' alt='dricka' draggable='false'>" +
+                        "<p id='bearBrand'>Name: " + data.namn + "</p>" +
+                        "<p id='bearPrice'> Price: " + data.pub_price + " kr</p>" +
+                        "</div>");
             });
         });
     });
@@ -184,7 +196,9 @@ $('#white').click(function () {
 <script type="text/javascript">
 
     name = localStorage.getItem("name");
-    alert(name);
+
+    var totalAmount = 0;
+    document.getElementById("totalAmount").innerText = "Total Amount " + totalAmount + " kr";
 
     function allowDrop(ev) {
         ev.preventDefault();
@@ -192,12 +206,17 @@ $('#white').click(function () {
 
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
+        document.getElementById("tableImage").className = "highlightDropArea";
+    }
+
+    function dragEnd(ev) {
+        document.getElementById("tableImage").className = "";
     }
 
     function drop(ev) {
         ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        object = document.getElementById(data);
+        var id = ev.dataTransfer.getData("text");
+        object = document.getElementById(id);
         val = object.getElementsByTagName('p');
 
         strName = val[0].innerHTML.split(': ')[1];
@@ -205,12 +224,48 @@ $('#white').click(function () {
 
         table = document.getElementById("orderList");
         row = table.insertRow(-1);
-        col0 = row.insertCell(0)
-        col1 = row.insertCell(1);
-        col2 = row.insertCell(2);
-        col0.innerHTML = 1;
-        col1.innerHTML = strName;
-        col2.innerHTML = strPrice;
+        row.insertCell(0).innerHTML = 1;
+        row.insertCell(1).innerHTML = strName;
+        row.insertCell(2).innerHTML = strPrice;
+        optionCol = row.insertCell(3);
+        optionCol.innerHTML = "<button type='button' onclick='removeItem(event)'>delete</button>";
+        optionCol.innerHTML += "<button type='button' onclick='increaseItem(event)'>+</button>";
+        optionCol.innerHTML += "<button type='button' onclick='decreaseItem(event)'>-</button>";
+
+        intPrice = parseInt(strPrice.split('kr')[0]);
+        if (intPrice) {
+            totalAmount += intPrice;
+            document.getElementById("totalAmount").innerHTML = "Total Amount " + totalAmount + " kr";
+        }
+    }
+
+    function increaseItem(ev) {
+        var p = ev.target.parentNode.parentNode;
+        quantity = p.children[0].innerHTML;
+        p.children[0].innerHTML = ++quantity;
+    }
+
+    function decreaseItem(ev) {
+        var p = ev.target.parentNode.parentNode;
+        quantity = p.children[0].innerHTML;
+        p.children[0].innerHTML = --quantity;
+    }
+
+    function removeItem(ev) {
+        var p = ev.target.parentNode.parentNode;
+        p.parentNode.removeChild(p);
+
+        /*element = document.getElementById("totalAmount");
+         strTotalAmount = element.innerHTML;
+         intTotalAmount = parseInt(strTotalAmount.split(" ")[2]);*/
+
+        strPrice = p.children[2].innerHTML;
+        intPrice = parseInt(strPrice.split('kr')[0]);
+
+        if (intPrice) {
+            totalAmount -= intPrice;
+            document.getElementById("totalAmount").innerHTML = "Total Amount " + totalAmount + " kr";
+        }
     }
 
 </script>
@@ -228,37 +283,5 @@ $('#white').click(function () {
     };
 </script>
 
-
-<script>
-
-    function swedish() {
-        {
-            document.getElementById("EnglishSvenska4").innerHTML = "Allergier";
-            document.getElementById("EnglishSvenska5").innerHTML = "Ga tillbaka";
-            document.getElementById("coctailLanguage").innerHTML = "Coctail";
-            document.getElementById("beveragesLanguage").innerHTML = "Drycker";
-            document.getElementById("EnglishSvenska1").innerHTML = "Öl";
-            document.getElementById("EnglishSvenska2").innerHTML = "Vin";
-            document.getElementById("EnglishSvenska3").innerHTML = "Läsk";
-
-        }
-    }
-
-
-    function english() {
-        document.getElementById("EnglishSvenska4").innerHTML = "Allergies";
-        document.getElementById("EnglishSvenska5").innerHTML = "Go back";
-        document.getElementById("coctailLanguage").innerHTML = "Coctail";
-        document.getElementById("beveragesLanguage").innerHTML = "Beverages";
-        document.getElementById("EnglishSvenska1").innerHTML = "Beer";
-        document.getElementById("EnglishSvenska2").innerHTML = "Wine";
-        document.getElementById("EnglishSvenska3").innerHTML = "Soda";
-
-
-    }
-
-</script>
-
-<script src="translate.js"></script>
 </body>
 </html>
