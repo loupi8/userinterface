@@ -1,0 +1,117 @@
+body { 
+	margin: 0; 
+	font-family: 'Lato', sans-serif;
+}
+
+/*********************
+ *        TABS       *
+ *********************/
+
+div.tabs {
+  display:inline-block;
+  width:100%;
+}
+ 
+ul.tab-links { 
+	margin:0;
+	background:#353535;
+} 
+
+ul.tab-links:after {
+  display:block;
+  clear:both;
+  content:'';
+}
+ 
+ul.tab-links li {
+  margin:0;
+  float:left;
+  list-style:none;
+  width:20%;
+}
+ 
+ul.tab-links a {
+  padding:9px 15px;
+  display:inline-block;
+  font-size:16px;
+  color:#FFFFFF;
+  transition:all linear 0.15s;
+  text-decoration: none;
+  width:80%;
+}
+ 
+ul.tab-links a:hover {
+  background:#9E9D9D;
+  text-decoration:none;
+}
+ 
+li.active, li.active {
+  padding:9px 15px;
+  background:#3F9B3F;
+  color:#FFFFFF;
+  font-weight: bold;
+  transition:all linear 0.15s;
+}
+ 
+div.tab-content {
+  padding:15px;
+  box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+  background:#fff;
+  width:60%;
+}
+ 
+div.tab {
+  display:none;
+}
+ 
+div.tab.active {
+  display:block;
+}
+
+
+/************************
+ * LOW INVENTORY WINDOW *
+ ************************/
+
+div.low-inventory {
+	width:30%;
+	background: #F4FA58;
+	position:absolute;
+	right:30px;
+	top:80px;
+	height:300px;
+	padding: 10px 5px 10px 5px;
+	font-size:14px;
+}
+
+/*********
+ * TABLE *
+ *********/
+ table {
+    border-collapse: collapse;
+    width:100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+
+table#inventory tr:not(:first-child):hover {
+  background-color: #999999;
+  transition:all linear 0.15s;
+}
+
+#popup {
+  width: 300px;
+  position: fixed;
+  top: 30%;
+  left: 40%;
+  z-index: 10;
+  background-color: gray;
+  text-align: center;
+}

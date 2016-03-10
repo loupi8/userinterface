@@ -1,0 +1,190 @@
+
+
+label {
+    cursor: pointer;
+}
+
+td{
+
+}
+
+input[type="checkbox"]
+{
+    /*Tar bort orginalrutan för checkboxes*/
+    display:none;
+}
+
+/*BEER CHECKBOXES*/
+
+.beer-text {
+    /*background: #FFDC00;*/
+    border-radius: 5px;
+    box-shadow: 5px 5px 0px #fdf098;
+    position: relative;
+    top: 0px;
+    right: 0;
+    bottom: 0;
+    left: 0px;
+}
+
+.beer-text:hover {
+    background: #FFDC00;
+}
+
+.beer-text:active {
+    top: 5px;
+    left: 5px;
+    box-shadow: 0px 0px 0px #fff199;
+}
+
+
+
+input[type="checkbox"] + .beer-text:after {
+    content: url(../images/beer.svg);
+    -webkit-font-smoothing: antialiased;
+}
+
+input[type="checkbox"]:checked + .beer-text:after {
+    content: url(../images/beer2.svg);
+
+}
+
+
+/*WINE CHECKBOXES*/
+.wine-text {
+    /*background: #FFDC00;*/
+    border-radius: 5px;
+    box-shadow: 5px 5px 0px #fff199;
+    position: relative;
+    top: 0px;
+    right: 0;
+    bottom: 0;
+    left: 0px;
+}
+
+.wine-text:hover {
+    background: #F0CF00;
+}
+
+.wine-text:active {
+    top: 5px;
+    left: 5px;
+    box-shadow: 0px 0px 0px #fff199;
+}
+
+
+input[type="checkbox"] + .wine-text:after {
+    content: url(../images/wine3.svg);
+    /*-webkit-font-smoothing: antialiased;*/
+}
+
+input[type="checkbox"]:checked + .wine-text:after {
+    content: url(../images/wine2.svg);
+}
+
+
+
+
+
+
+
+/*COCTAIL CHECKBOXES*/
+.coctail-text {
+    /*background: #FFDC00;*/
+    border-radius: 5px;
+    box-shadow: 5px 5px 0px #fff199;
+    position: relative;
+    top: 0px;
+    right: 0;
+    bottom: 0;
+    left: 0px;
+}
+
+.coctail-text:hover {
+    background: #f0cf00;
+}
+
+.coctail-text:active {
+    top: 5px;
+    left: 5px;
+    box-shadow: 0px 0px 0px #fff199;
+}
+
+
+input[type="checkbox"] + .coctail-text:after {
+    content: url(../images/Coctail.svg);
+    /*-webkit-font-smoothing: antialiased;*/
+}
+
+input[type="checkbox"]:checked + .coctail-text:after {
+    content: url(../images/Coctail2.svg);
+}
+
+
+/*NON ALCOHOL CHECKBOXES*/
+.alcFree-text {
+    /*background: #FFDC00;*/
+    border-radius: 5px;
+    box-shadow: 5px 5px 0px #fff199;
+    position: relative;
+    top: 0px;
+    right: 0;
+    bottom: 0;
+    left: 0px;
+}
+
+.alcFree-text:hover {
+    /*background: #d6584b;*/
+    background: #f0cf00;
+}
+
+.alcFree-text:active {
+    top: 5px;
+    left: 5px;
+    box-shadow: 0px 0px 0px #fff199;
+}
+
+
+input[type="checkbox"] + .alcFree-text:after {
+    content: url(../images/Coctail.svg);
+    /*-webkit-font-smoothing: antialiased;*/
+}
+
+input[type="checkbox"]:checked + .alcFree-text:after {
+    content: url(../images/Coctail2.svg);
+}
+
+
+
+
+
+/*-webkit-animation: tick 180ms ease-out;*/
+/*animation: tick 180ms ease-out;*/
+
+
+
+@-webkit-keyframes tick {
+    0% {
+        -webkit-transform: scale(1);
+    }
+    90% {
+        -webkit-transform: scale(1.4);
+    }
+    100% {
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes tick {
+    0% {
+        transform: scale(1);
+    }
+    90% {
+        transform: scale(1.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+
+}
+

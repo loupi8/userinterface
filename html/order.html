@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="../js/jquery-2.2.0.min.js"></script>
+    <script src="../js/translate.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/intro.css">
+    <link rel="stylesheet" type="text/css" href="../css/checkboxStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/languageSelector.css">
+    <title>Order</title>
+</head>
+
+<body>
+
+<div id="logo">
+    <img src="../images/logo.svg">
+</div>
+<div id="backButton">
+    <button id="EnglishSvenska5" onclick="goBack()">Go Back</button>
+    <button id="white">White</button>
+    <button id="blue">Blue</button>
+
+</div>
+
+
+<div id="chooseLanguage">
+    <label>
+        <input type="checkbox" id="switchLang" name="check"/>
+        <div id="lang" class="lang-text"></div>
+
+    </label>
+</div>
+
+
+<form>
+
+    <div id="main">
+        <div class="products">
+            <h1>Top 5 Beverages</h1>
+        </div>
+
+        <div class="productwine">
+            <h1>Wine</h1>
+        </div>
+    </div>
+</form>
+
+<div id="filterbevereges">
+
+
+    <label>
+        <h3 id="beveragesLanguage">Beverages</h3>
+    </label>
+
+    <form>
+        <label>
+            <input type="checkbox" name="check">
+            <span class="beer-text" id="EnglishSvenska1">Beer</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="check">
+            <span class="wine-text" id="EnglishSvenska2">Wine</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="check">
+            <span class="coctail-text" id="coctailLanguage">Coctail</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="check">
+            <span class="alcFree-text" id="EnglishSvenska3">Soda</span>
+        </label>
+
+    </form>
+</div>
+
+<div id="filterallergic">
+    <form>
+        <ul>
+            <h3 id="EnglishSvenska4">Allergies</h3>
+            <li>
+                <label>Lactose<input id="lactose" type="checkbox"></label>
+            </li>
+            <li>
+                <label>Gluten<input id="gluten" type="checkbox"></label>
+            </li>
+        </ul>
+
+    </form>
+</div>
+
+
+<div id="chart">
+
+    <h3>Table 4</h3>
+    <img id="tableImage" class="tableChart" src="../images/table.svg" draggable="false" ondrop="drop(event)"
+         ondragover="allowDrop(event)">
+
+    <form>
+        <table id="orderList">
+            <tr>
+                <th id="AMT">AMT.</th>
+                <th id="NAME">NAME</th>
+                <th id="PRICE">PRICE</th>
+                <th id="OPTION">Option</th>
+            </tr>
+        </table>
+    </form>
+    <div id="totalAMT">
+        <h3 id="totalAmount"></h3>
+    </div>
+</div>
+
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('tr').click(function (event) {
+            $(this).toggleClass('selected');
+            if (event.target.type !== 'checkbox') {
+                $(':checkbox', this).trigger('click');
+            }
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    $('#white').click(function () {
+        $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color": "red"});
+    });
+
+    $('#blue').click(function () {
+        $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color": "blue"});
+    });
+    $('#white').click(function () {
+        $('#white').css({"color": "blue"});
+
+        $('#blue').click(function () {
+            $('#blue').css({"color": "blue"});
+        });
+    });
+</script>
+<script type="text/javascript">
+
+    $(function () {
+        $('#wines').click(function () {
+            if ($(this).is(':checked')) {
+                $(".products").hide();
+                $(".productwine").show();
+            }
+            else
+                $(".products").show();
+
+        });
+
+    });
+
+
+    $(document).ready(function () {
+
+        // Get all products from the api (as JSON)
+        $.getJSON("http://pub.jamaica-inn.net/fpdb/api.php?name=jorass&password=jorass&action=inventory_get", function (data) {
+            // Loop through the fetched products
+            $.each(data.payload, function (i, data) {
+                // Append each product name to the DOM
+                $('.products').append("<div id='" + data.beer_id + "' class='alcohol' draggable='true' ondragstart='drag(event)' ondragend='dragEnd(event)'>" +
+                        "<img src='../images/beer.svg' alt='dricka' draggable='false'>" +
+                        "<p id='bearBrand'>Name: " + data.namn + "</p>" +
+                        "<p id='bearPrice'> Price: " + data.pub_price + " kr</p>" +
+                        "</div>");
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        // Get all products from the api (as JSON)
+        $.getJSON("file:///Applications/MAMP/htdocs/FD/wine.json", function (data) {
+            // Loop through the fetched products
+            $.each(data.payload, function (i, data) {
+                // Append each product name to the DOM
+                $('.productwine').append("<div class='alcohol' ondrop='drop(event)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event)'><img src='../images/beer.svg' alt='dricka'><p id='bearBrand'>Name: " + data.namn + "</p><p> Price: " + data.pub_price + " kr</div>");
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+
+    name = localStorage.getItem("name");
+
+    var totalAmount = 0;
+    document.getElementById("totalAmount").innerText = "Total Amount " + totalAmount + " kr";
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+        document.getElementById("tableImage").className = "highlightDropArea";
+    }
+
+    function dragEnd(ev) {
+        document.getElementById("tableImage").className = "";
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var id = ev.dataTransfer.getData("text");
+        object = document.getElementById(id);
+        val = object.getElementsByTagName('p');
+
+        strName = val[0].innerHTML.split(': ')[1];
+        strPrice = val[1].innerHTML.split(': ')[1];
+
+        table = document.getElementById("orderList");
+        row = table.insertRow(-1);
+        row.insertCell(0).innerHTML = 1;
+        row.insertCell(1).innerHTML = strName;
+        row.insertCell(2).innerHTML = strPrice;
+        optionCol = row.insertCell(3);
+        optionCol.innerHTML = "<button type='button' onclick='removeItem(event)'>delete</button>";
+        optionCol.innerHTML += "<button type='button' onclick='increaseItem(event)'>+</button>";
+        optionCol.innerHTML += "<button type='button' onclick='decreaseItem(event)'>-</button>";
+
+        intPrice = parseInt(strPrice.split('kr')[0]);
+        if (intPrice) {
+            totalAmount += intPrice;
+            document.getElementById("totalAmount").innerHTML = "Total Amount " + totalAmount + " kr";
+        }
+    }
+
+    function increaseItem(ev) {
+        var p = ev.target.parentNode.parentNode;
+        quantity = p.children[0].innerHTML;
+        p.children[0].innerHTML = ++quantity;
+    }
+
+    function decreaseItem(ev) {
+        var p = ev.target.parentNode.parentNode;
+        quantity = p.children[0].innerHTML;
+        p.children[0].innerHTML = --quantity;
+    }
+
+    function removeItem(ev) {
+        var p = ev.target.parentNode.parentNode;
+        p.parentNode.removeChild(p);
+
+        /*element = document.getElementById("totalAmount");
+         strTotalAmount = element.innerHTML;
+         intTotalAmount = parseInt(strTotalAmount.split(" ")[2]);*/
+
+        strPrice = p.children[2].innerHTML;
+        intPrice = parseInt(strPrice.split('kr')[0]);
+
+        if (intPrice) {
+            totalAmount -= intPrice;
+            document.getElementById("totalAmount").innerHTML = "Total Amount " + totalAmount + " kr";
+        }
+    }
+
+</script>
+
+
+<script>
+    document.getElementById("switchLang").onclick = function () {
+        if (this.checked) {
+            swedish();
+        }
+        else {
+//            alert("Checkbox wasn't checked.");
+            english();
+        }
+    };
+</script>
+
+</body>
+</html>
