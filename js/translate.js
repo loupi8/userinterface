@@ -14,6 +14,7 @@ function swedish() {
         document.getElementById("EnglishSvenska1").innerHTML = "Öl";
         document.getElementById("EnglishSvenska2").innerHTML = "Vin";
         document.getElementById("EnglishSvenska3").innerHTML = "Läsk";
+        document.getElementById("langBrand").innerHTML = "Namn: bajs";
 
     }
 }
@@ -33,5 +34,6 @@ function english() {
     document.getElementById("EnglishSvenska1").innerHTML = "Beer";
     document.getElementById("EnglishSvenska2").innerHTML = "Wine";
     document.getElementById("EnglishSvenska3").innerHTML = "Soda";
+    document.getElementById("langBrand").innerHTML = "Name: bajs";
 }
 

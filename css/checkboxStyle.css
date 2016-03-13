@@ -122,20 +122,18 @@ input[type="checkbox"]:checked + .allergy-text:before {
 
 .allergy-text{
     /*background: #FFDC00;*/
-    font-weight: normal;
-    position: relative;
-    vertical-align: middle;
-    right: 0;
+    /*font-weight: normal;*/
 
 
-    bottom: 0px;
-    left: 0px;
-    width: 1em;
+
+
+    margin-left: 20px;
+    width: 4em;
     font-variant: normal;
     font-size: 15px;
-    margin-left: 7px;
-    line-height: 1;
-    letter-spacing: 0.1em;
+    /*margin-left: 7px;*/
+    line-height: 2;
+    letter-spacing: 0.15em;
     -webkit-transition: all 300ms;
     -moz-transition: all 300ms;
     transition: all 300ms;
@@ -143,12 +141,19 @@ input[type="checkbox"]:checked + .allergy-text:before {
 }
 
 #checkBoxesAllergy{
-    background-color: #5b945d;
+    position: relative;
+    background-color: rgba(93, 93, 93, 0.98);
     width: 200px;
+    margin-left: 0px;
     margin-bottom: 30px;
-    margin-top: 24px;
-    border-bottom-right-radius: 15px;
-    /*border-bottom-left-radius: 15px;*/
+    top: 40px;
+
+
+    z-index:1;
+    border-radius: 10px;
+
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .1);
+
 
 }
 
