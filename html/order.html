@@ -13,13 +13,15 @@
 
 <body>
 
-<div id="logo">
-    <img src="../images/logo.svg">
-</div>
+<!--<div id="logo">-->
+<!--<img src="../images/logo.svg">-->
+<!--</div>-->
 <div id="backButton">
     <button id="EnglishSvenska5" onclick="goBack()">Go Back</button>
     <button id="white">White</button>
     <button id="blue">Blue</button>
+    <label for="lightswitch">Light Switch</label>
+    <input type="checkbox" id="lightswitch"/>
 
 </div>
 
@@ -74,44 +76,50 @@
             <span class="alcFree-text" id="EnglishSvenska3">Soda</span>
         </label>
 
+        <div id="checkBoxesAllergy">
+            <form>
+                <!--<h3 id="EnglishSvenska4">Allergies</h3>-->
+                <label>
+                    <input type="checkbox" name="check">
+                    <span class="allergy-text" id="lactoseChooseLanguage">Lactose free</span>
+                </label>
+                <br>
+                <label>
+                    <input type="checkbox" name="check">
+                    <span class="allergy-text" id="glutenChooseLanguage">Gluten free</span>
+                </label>
+            </form>
+        </div>
     </form>
 </div>
 
-<div id="filterallergic">
-    <form>
-        <ul>
-            <h3 id="EnglishSvenska4">Allergies</h3>
-            <li>
-                <label>Lactose<input id="lactose" type="checkbox"></label>
-            </li>
-            <li>
-                <label>Gluten<input id="gluten" type="checkbox"></label>
-            </li>
-        </ul>
+<!--<div id="filterallergic">-->
 
-    </form>
-</div>
+<!--</div>-->
 
 
 <div id="chart">
 
-    <h3>Table 4</h3>
+    <h3 id="tableLanguage">Table 4</h3>
     <img id="tableImage" class="tableChart" src="../images/table.svg" draggable="false" ondrop="drop(event)"
          ondragover="allowDrop(event)">
-
+</div>
+<div id="bill">
     <form>
         <table id="orderList">
             <tr>
-                <th id="AMT">AMT.</th>
-                <th id="NAME">NAME</th>
-                <th id="PRICE">PRICE</th>
+                <th id="AMT">Amt.</th>
+                <th id="NAME">Name</th>
+                <th id="PRICE">Price</th>
                 <th id="OPTION">Option</th>
             </tr>
         </table>
     </form>
-    <div id="totalAMT">
-        <h3 id="totalAmount"></h3>
-    </div>
+
+</div>
+
+<div id="totalAMT">
+    <h3 id="totalAmount"></h3>
 </div>
 
 
