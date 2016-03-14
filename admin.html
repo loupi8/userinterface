@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>The Flying Dutchman</title>
+<link rel="stylesheet" href="css/style.css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="js/jquery-2.2.1.min.js"></script>
+<script src="js/orders.js"></script>
+</head>
+<body>
+
+  <div class="tabs">
+      <ul class="tab-links">
+        <li class="active"><img src="images/receipt_icon.png">  ORDERS</a></li>
+        <li><a href="users.html"><img src="images/users_icon.png"> MEMBERS</a></li>
+        <li><a href="stats.html"><img src="images/graph_icon.png"> STATISTICS</a></li>
+        <li><a href="inventory.html"><img src="images/beverage_icon.png"> INVENTORY</a></li>
+        <li><p> You are logged in as: <b id="userlog"></b></p></li>
+          <li><a id="logout" href="intro.html">LOG OUT</a></li>
+      </ul>
+  </div>
+  <script>
+      document.getElementById("userlog").innerHTML =localStorage.getItem("name");
+
+
+  </script>
+
+  <div class="tab-content">
+      <table id="inventory">
+          <tbody>
+          <tr>
+              <th>Transaction ID</th>
+              <th>Beverage</th>
+              <th>Username</th>
+              <th>Timestamp</th>
+          </tr>
+          </tbody>
+      </table>
+
+</body>
+</html>

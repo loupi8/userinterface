@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="js/translate.js"></script>
+    <script src="js/filterdrinks.js"></script>
+    <script src="js/dragdrop.js"></script>
+    <script src="js/lang.js"></script>
+    <script src="js/back.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/intro.css">
+    <link rel="stylesheet" type="text/css" href="css/checkboxStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/languageSelector.css">
+    <title>Order</title>
+</head>
+
+<body>
+
+<div id="logo">
+    <img src="images/logo.svg">
+</div>
+<div id="backButton">
+    <button id="EnglishSvenska5" onclick="goBack()">Go Back</button>
+    <button id="white">Alternative Theme</button>
+    <button id="normal">Standard Theme</button>
+
+</div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+    $('#white').click(function(){
+        $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color":"#000000"});
+
+    });
+    $('#normal').click(function(){
+        $('#main, #filterbevereges, #filterallergic, #chart').css({"background-color":"#5b955d"});
+
+    });
+
+
+
+</script>
+
+<div id="chooseLanguage">
+    <label>
+        <input type="checkbox" id="switchLang" name="check"/>
+        <div id="lang" class="lang-text"></div>
+
+    </label>
+</div>
+<script>
+
+    document.getElementById("switchLang").onclick = function () {
+        if (this.checked) {
+            swedish();
+        }
+        else {
+//            alert("Checkbox wasn't checked.");
+            english();
+        }
+    };
+</script>
+
+<form>
+
+    <div id="main">
+        <input type="text" value="Search..." id="search-criteria"/>
+        <input type="button" id="search" value="search"/>
+        <div class="products">
+            <h1>Top 5 Beverages</h1>
+        </div>
+        <script>
+            $('.alcohol').hide();
+            $('#search').click(function(){
+                $('.alcohol').hide();
+                var txt = $('#search-criteria').val();
+                $('.alcohol:contains("'+txt+'")').show();
+            });
+
+        </script>
+
+        <div class="productwine">
+            <h1>Wine</h1>
+        </div>
+    </div>
+</form>
+
+<div id="filterbevereges">
+
+
+    <label>
+        <h3 id="beveragesLanguage">Beverages</h3>
+    </label>
+
+    <form>
+        <label>
+            <input type="checkbox" name="check">
+            <span class="beer-text" id="EnglishSvenska1">Beer</span>
+        </label>
+
+        <label>
+            <input type="checkbox" id="wines" name="check">
+            <span class="wine-text" id="EnglishSvenska2">Wine</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="check">
+            <span class="coctail-text" id="coctailLanguage">Coctail</span>
+        </label>
+
+        <label>
+            <input type="checkbox" name="check">
+            <span class="alcFree-text" id="EnglishSvenska3">Soda</span>
+        </label>
+
+    </form>
+</div>
+
+<div id="filterallergic">
+    <form>
+        <ul>
+            <h3 id="EnglishSvenska4">Allergies</h3>
+            <li>
+                <label id="laktos">Lactose<input id="lactose" type="checkbox"></label>
+            </li>
+            <li>
+                <label>Gluten<input id="gluten" type="checkbox"></label>
+            </li>
+        </ul>
+
+    </form>
+</div>
+
+
+<div id="chart">
+
+    <h3>Table 4 </h3>
+    <img id="tableImage" class="tableChart" src="images/table.svg" draggable="false" ondrop="drop(event)"
+         ondragover="allowDrop(event)">
+
+    <form>
+        <table id="orderList">
+            <tr>
+                <th id="AMT">AMT.</th>
+                <th id="NAME">NAME</th>
+                <th id="PRICE">PRICE</th>
+                <th id="OPTION">Option</th>
+            </tr>
+        </table>
+    </form>
+    <div id="totalAMT">
+        <h3 id="totalAmount"></h3>
+        <button type="button" id="checkout" onclick="checkout ()">Checkout</button>
+    </div>
+</div>
+
+
+</body>
+</html>

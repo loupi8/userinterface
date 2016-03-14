@@ -38,6 +38,24 @@ ul.tab-links a {
   transition:all linear 0.15s;
   text-decoration: none;
   width:80%;
+    white-space: nowrap;
+}
+
+ul.tab-links p {
+    padding:9px 15px;
+    display:inline-block;
+    font-size:16px;
+    color:#FFFFFF;
+    transition:all linear 0.15s;
+    text-decoration: none;
+    width:80%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+p #userlogo {
+    white-space: nowrap;
+    overflow: hidden;
 }
  
 ul.tab-links a:hover {

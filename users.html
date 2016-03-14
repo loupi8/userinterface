@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>The Flying Dutchman</title>
+<link rel="stylesheet" href="css/style.css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="js/jquery-2.2.1.min.js"></script>
+<script src="js/users.js"></script>
+</head>
+<body>
+
+<div class="tabs">
+	<ul class="tab-links">
+		<li><a href="admin.html"><img src="images/receipt_icon.png">  ORDERS</a></li>
+		<li class="active"><img src="images/users_icon.png"> MEMBERS</a></li>
+		<li><a href="stats.html"><img src="images/graph_icon.png"> STATISTICS</a></li>
+		<li><a href="inventory.html"><img src="images/beverage_icon.png"> INVENTORY</a></li>
+		<li><p> You are logged in as: <b id="userlog"></b></p></li>
+		<li><a href="intro.html">LOG OUT</a></li>
+	</ul>
+</div>
+<script>
+	document.getElementById("userlog").innerHTML =localStorage.getItem("name");
+
+</script>
+
+<div class="tab-content">
+	<table id="inventory">
+		<tbody>
+		<tr>
+			<th>Userame</th>
+			<th>First Name</th>
+			<th>Assets</th>
+		</tr>
+		</tbody>
+	</table>
+
+</div>
+
+<div id="popup">
+	<p>Name: <span></span></p>
+	<p>Current asset: <span></span></p>
+	<p>New asset: <input type="text" id="new-amount" style="width:40px;"></input>
+		<input type="submit" value="Save"></input>
+		<input type="button" value="Cancel" id="cancel-edit-amount"></input></p>
+</div>
+</body>
+</html>
