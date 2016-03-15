@@ -4,11 +4,14 @@
 }
 
 body {
-    overflow-y: scroll;
     font-family: "Open Sans", sans-serif;
-    width: 100%;
-    height: 100%;
+    background: url(../images/back.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
+
 #icons {
     position: absolute;
     top: 50%;
@@ -25,7 +28,7 @@ body {
 
 #logo {
     width: 100px;
-    position: absolute;
+    position: fixed;
     margin-left: 1200px;
     margin-top: 0px;
 
@@ -136,12 +139,9 @@ span {
 }
 
 #main {
-    overflow: auto;
-    overflow: scroll;
-    position:fixed;
     float: left;
-    width: 720px;
-    height: 600px;
+    min-height:600px;
+    width: 700px;
     margin-top: 40px;
     margin-left: 330px;
     margin-right: 600px;
@@ -156,15 +156,6 @@ span {
     background-color: #666f8e;
     padding: 5px 5px 5px 5px;
     width: 200px;
-}
-
-body {
-    background: url(../images/back.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    /*background-color: #4c874e;*/
 }
 
 #filterbevereges {

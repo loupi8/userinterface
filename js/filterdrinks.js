@@ -1380,8 +1380,8 @@ $(document).ready(function () {
             if (data.namn != ""){
                 $('.products').append("<div id='" + data.beer_id + "' class='alcohol' draggable='true' ondragstart='drag(event)' ondragend='dragEnd(event)'>" +
                     "<img src='images/beer.svg' alt='dricka' draggable='false'>" +
-                    "<p id='bearBrand'>Name: " + data.namn + "</p>" +
-                    "<p id='bearPrice'>Price: " + data.pub_price + " kr</p>" +
+                    "<p id='bearBrand'>" + data.namn + "</p>" +
+                    "<p id='bearPrice'>" + data.pub_price + " kr</p>" +
                     "</div>");
             }
             // Append each product name to the DOM

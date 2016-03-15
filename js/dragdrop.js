@@ -50,16 +50,16 @@ function drop(ev) {
     var id = ev.dataTransfer.getData("text");
     object = document.getElementById(id);
     val = object.getElementsByTagName('p');
+    console.log(val);
 
-
-    strName = val[0].innerHTML.split(': ')[1];
-    strPrice = val[1].innerHTML.split(': ')[1];
+    strName = val[0].innerHTML;
+    strPrice = val[1].innerHTML;
 
 
     table = document.getElementById("orderList");
 
     var vals = getTableColumnValues(2);
-    console.log(vals);
+    /*console.log(vals);*/
 
 
 
